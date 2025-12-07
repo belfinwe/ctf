@@ -9,6 +9,7 @@ def main(seq: str, current_number: int):
     turns = int(seq[1:])
 
     number = current_number
+    number_of_times_at_zero = 0
     for i in range(0, turns):
         number += increment
 
@@ -17,7 +18,11 @@ def main(seq: str, current_number: int):
         elif number > 99:
             number  = 0
 
-    return number
+        if number == 0:
+            number_of_times_at_zero += 1
+
+    return number, number_of_times_at_zero
+
 
 if __name__ == "__main__":
     # # Testing
@@ -33,9 +38,9 @@ if __name__ == "__main__":
     with open("seq.json", "r") as seq_file:
         seqs = json.load(seq_file)
         for seq in seqs:
-            number = main(seq, number)
-            if number == 0:
-                password_counter += 1
+            number, tmp_password_counter = main(seq, number)
+            password_counter = password_counter + tmp_password_counter
+
 
     print(f"The passowrd is: {password_counter}")
 
