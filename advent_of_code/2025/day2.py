@@ -15,13 +15,19 @@ def further_validation_check(code: str) -> bool:
     """
     True = valid, False = invalid
     """
+    # print(f"Checking {code}...")
     if len(code) <= 1 and len(code) % 2 != 0:
+        # print(f"{code} is valid")
         return True
 
     first = code[:int(len(code) / 2)]
     second = code[int(len(code) / 2):]
     if first == second:
+        # print(f"Invalid: {first=}, {second=}")
         return False
+
+    # print(f"{code} default to valid")
+    return True
 
 
 
