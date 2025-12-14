@@ -1,5 +1,5 @@
 """
-Gift shop
+Gift shop, part 2!
 """
 
 import csv
@@ -15,6 +15,26 @@ def further_validation_check(code: str) -> bool:
     """
     True = valid, False = invalid
     """
+    for i in range(1,len(code)+1):
+        sequence_length = 0
+        counter = 0
+        if len(code) % i == 0 and i < len(code):
+
+            sequence_length = i
+            all_sequences = list()
+
+            for j in range(0, int(len(code) / sequence_length), sequence_length):
+
+                if len(all_sequences) == 0 or all_sequences[-1] == j:
+                    all_sequences.append(j)
+                else:
+                    continue
+
+            # code has a sequence
+            return code
+
+
+    """
     # print(f"Checking {code}...")
     if len(code) <= 1 and len(code) % 2 != 0:
         # print(f"{code} is valid")
@@ -28,7 +48,7 @@ def further_validation_check(code: str) -> bool:
 
     # print(f"{code} default to valid")
     return True
-
+    """
 
 
 def main(puzzle: str):
